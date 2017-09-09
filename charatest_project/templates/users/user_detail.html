@@ -3,6 +3,7 @@
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
+
 {% block content %}
 <div class="container">
 
@@ -30,20 +31,4 @@
 <!-- End Action buttons -->
 {% endif %}
 
-    <form method="POST" id="userProfileForm" enctype='multipart/form-data'>
-    {% csrf_token %}
-    {{  form.as_p }}
-
-    <button type="submit" >Submit</button>
-
-    </form>
-
-
-</div>
 {% endblock content %}
-
-<div>
-    {% block extrauserdetail %}
-    {% endblock extrauserdetail %}
-</div>
-

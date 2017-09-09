@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h1> {{ profileowner.username }}'s Profile
 
-    <h1> {{ displayname }} <h1>
+        {% if profileowner == request.user %}
+                <a href="{% url 'editUserProfile' %}"> [Edit]</a>
+        {% endif %}
+    <h1>
+    {% if picture %}
+        <br/><img src="{{ picture.url }}"> Poop!
+    {%  endif %}
 
+    {% if profileDescription %}
+    <div>
+    {{ profileDescription }}
+    </div>
+    {% endif %}
     <p>Characters:</p>
     {% if kyaralist %}
         <p>
@@ -21,7 +33,7 @@
     {% if friendslist %}
         <ul>
         {% for friend in friendslist %}
-            <li>{{ friend.friend.username }}</li>
+            <li><a href="{% url 'displayprofile' friend.friend.username %}">{{ friend.friend.username }}</a></li>
         {% endfor %}
         </ul>
     {% endif %}

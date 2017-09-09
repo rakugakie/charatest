@@ -11,6 +11,7 @@ def index(request):
 
     context_dict = {}
 
+
     try:
         userlist = User.objects.order_by('username')
 
@@ -19,6 +20,7 @@ def index(request):
     except User.DoesNotExist:
         context_dict = {}
 
+
     return render(request, 'index.html', context_dict)
 
 
@@ -26,7 +28,13 @@ def displayprofile(request, owner):
     context_dict = {}
     try:
         owner = User.objects.get(username__iexact=owner)
-
+        context_dict['profileowner'] = owner
+        try:
+            userprofile = UserProfile.objects.get(user=owner)
+            context_dict['profileDescription'] = userprofile.profileDescription
+            context_dict['picture'] = userprofile.picture
+        except UserProfile.DoesNotExist:
+            pass
         try:
             kyaralist = Kyaracter.objects.filter(kyaraowner=owner.id)
             context_dict['kyaralist'] = kyaralist
@@ -80,13 +88,24 @@ def addfriend(request):
     return render(request, 'addfriend.html', {'form':form})
 
 
+
 def displayProfileForm(request):
     user = request.user
     userprofile = UserProfile.objects.get_or_create(user=user)
-    alreadyuser = UserProfile.objects.get(user = user)
-
-    form = editUserProfile(instance=alreadyuser)
+    edituserform = UserProfile.objects.get(user=user)
+    if request.method == "POST":
+        form = editUserProfile(request.POST, request.FILES, instance=edituserform)
+        if form.is_valid():
+            try:
+                form.save()
+                return HttpResponseRedirect("/")
+            except UserProfile.DoesNotExist:
+                print("beepboop")
+                pass
+    else:
+        form = editUserProfile(instance=edituserform)
 
     return render(request, 'editprofile.html', {'form': form})
+
 
 

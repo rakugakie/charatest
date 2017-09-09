@@ -33,6 +33,18 @@ class userRelationship(models.Model):
     friend = models.ForeignKey(User, related_name="friend")
     created = models.DateTimeField(auto_now_add=True, editable=False)
 
+class chatGroup(models.Model):
+    groupID = models.AutoField(unique=True, primary_key=True)
+    modUserID = models.ForeignKey(User, related_name="modUserID")
+    participantUserID = models.ManyToManyField(User)
+    groupPhoto = models.ImageField(upload_to='group_images', blank=True)
+
+
+class messageText(models.Model):
+    messageText = models.CharField(max_length=1000, default='')
+    messageDate = models.DateField(auto_now_add=True, editable=False)
+    messageGroup = models.ForeignKey(chatGroup)
+    messageSender = models.ForeignKey(User)
 
 
 
