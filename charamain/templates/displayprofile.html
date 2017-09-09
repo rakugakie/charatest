@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1> {{ displayname }} <h1>
+
+    <p>Characters:</p>
+    {% if kyaralist %}
+        <p>
+            {% for kyara in kyaralist %}
+                    <li>{{ kyara.kyaraname }}
+                        {% if kyara.kyarapic %}<img style="width:200px;height:200px;" src="{{  kyara.kyarapic.url }}">{% endif %}
+                    </li>
+
+            {% endfor %}
+            </ul>
+
+    {% endif %}
+
+    <p>Friends:</p>
+    {% if friendslist %}
+        <ul>
+        {% for friend in friendslist %}
+            <li>{{ friend.friend.username }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+
+{% endblock content %}

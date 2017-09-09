@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>New Character<h1>
+
+    <form method="POST" class="addFriend">
+        {% csrf_token %}
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.label }}<br/>
+                {{ field }}<br/>
+            {% endfor %}
+
+        <button type="submit">Add Friend</button>
+    </form>
+
+
+{% endblock content %}

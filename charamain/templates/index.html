@@ -1,0 +1,13 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+<p> Hey Idiots</p>
+
+    {% if userlist %}
+        <ul>
+        {% for users in userlist %}
+            <li><a href="{% url 'displayprofile' users.username %}">{{ users.username }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock content %}
