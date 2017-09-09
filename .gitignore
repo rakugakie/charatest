@@ -359,3 +359,6 @@ mailhog
 
 
 charatest_project/media/
+'.env' 
+'env.EXAMPLE' 
+'mailhog.exe' 

@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^userprofile/(?P<owner>[\w\-]+)$', views.displayprofile, name='displayprofile'),
     url(r'^character/new/$', views.addkyara, name='addkyara'),
     url(r'^friends/add/$', views.addfriend, name='addfriend'),
-    url(r'^userprofile/edit', views.editUserProfile, name="editUserProfile"),
+    url(r'^profile/edit$', views.displayProfileForm, name="editUserProfile"),
 
 ]
 

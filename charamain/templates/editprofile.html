@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block extrauserdetail %}
 
-    <form id="userProfileForm">
+    <form method="POST" id="userProfileForm" enctype='multipart/form-data'>
     {% csrf_token %}
     {{  form.as_p }}
 
-    <button type="submit">Submit</button>
+    <button type="submit" >Submit</button>
 
     </form>
 
-{% endblock content %}
+{% endblock extrauserdetail %}

@@ -4,7 +4,7 @@
 
     <h1>New Character<h1>
 
-    <form method="POST" class="addkyara">
+    <form method="POST" class="addkyara" enctype='multipart/form-data'>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Create Character</button>

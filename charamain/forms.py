@@ -1,5 +1,5 @@
 from django import forms
-from charamain.models import Kyaracter, UserProfile, userRelationship
+from charamain.models import Kyaracter, UserProfile
 from charatest_project.users.models import User
 
 
@@ -7,14 +7,7 @@ class AddKyara(forms.ModelForm):
 
     class Meta:
         model = Kyaracter
-        fields = ('kyaraname', 'kyarapic')
-
-
-class editpublicprofile(forms.ModelForm):
-
-    class Meta:
-        model = UserProfile
-        fields = ('picture',)
+        fields = ('kyaraname', 'kyarapic',)
 
 
 class addFriend(forms.Form):
@@ -25,7 +18,4 @@ class editUserProfile(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        exclude = ('userkyaracount', 'userfriendcount')
-
-
-
+        exclude = ('userkyaracount', 'userfriendcount', 'user',)

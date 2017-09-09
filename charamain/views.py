@@ -80,20 +80,12 @@ def addfriend(request):
     return render(request, 'addfriend.html', {'form':form})
 
 
-def editprofile(request):
-    if request.method == "POST":
-        form = editUserProfile(request.POST)
-        if form.is_valid():
-            try:
-                userprofile = UserProfile.objects.get_or_create(id=request.user)
-                userprofile.profileDescription = form.cleaned_data['profileDescription']
-                userprofile.picture = form.cleaned_data['picture']
-            except UserProfile.DoesNotExist:
-                print("beepboop")
-                pass
+def displayProfileForm(request):
+    user = request.user
+    userprofile = UserProfile.objects.get_or_create(user=user)
+    alreadyuser = UserProfile.objects.get(user = user)
 
-    else:
-        form = editUserProfile()
+    form = editUserProfile(instance=alreadyuser)
 
     return render(request, 'editprofile.html', {'form': form})
 

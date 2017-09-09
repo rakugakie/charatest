@@ -17,7 +17,7 @@ urlpatterns = [
 
 
     # Your stuff: custom urls includes go here
-    url(r'^$', include('charamain.urls'), name='home'),
+    url(r'', include('charamain.urls'), name='home'),
     url(r'^main/', include('charamain.urls'), name='home'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

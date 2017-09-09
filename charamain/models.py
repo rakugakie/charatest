@@ -10,16 +10,13 @@ from charatest_project.users.models import User
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User)
-    profileDescription = models.CharField(
-        max_length=2000,
-        default='This user has not added a profile description yet')
-
+    profileDescription = models.CharField(max_length=2000, default='')
     picture = models.ImageField(upload_to='profile_images', blank=True)
     userkyaracount = models.IntegerField(default=0)
     userfriendcount = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.username
+        return self.user.username
 
 
 class Kyaracter(models.Model):
@@ -30,7 +27,6 @@ class Kyaracter(models.Model):
 
     def __str__(self):
         return self.kyaraname
-
 
 class userRelationship(models.Model):
     creator = models.ForeignKey(User, related_name="creator")
