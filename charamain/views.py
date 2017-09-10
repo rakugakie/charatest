@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from charatest_project.users.models import User
-from charamain.models import Kyaracter, UserProfile, userRelationship
+from charamain.models import Kyaracter, UserProfile, UserRelationship, ChatGroup
 from django.http import HttpResponse, HttpResponseRedirect
 from charamain.forms import AddKyara, addFriend, editUserProfile
 
@@ -20,7 +20,6 @@ def index(request):
     except User.DoesNotExist:
         context_dict = {}
 
-
     return render(request, 'index.html', context_dict)
 
 
@@ -35,17 +34,20 @@ def displayprofile(request, owner):
             context_dict['picture'] = userprofile.picture
         except UserProfile.DoesNotExist:
             pass
+
         try:
-            kyaralist = Kyaracter.objects.filter(kyaraowner=owner.id)
+            kyaralist = Kyaracter.objects.kyaralist(owner.id)
             context_dict['kyaralist'] = kyaralist
         except Kyaracter.DoesNotExist:
             pass
 
         try:
-            friendslist = userRelationship.objects.filter(creator=owner.id)
+            friendslist = UserRelationship.objects.friendslist(owner.id)
             context_dict['friendslist'] = friendslist
-        except userRelationship.DoesNotExist:
+        except UserRelationship.DoesNotExist:
             pass
+        except:
+            raise Exception("Unknown Error Occured at friendslist")
 
         return render(request, 'displayprofile.html', context_dict)
     except User.DoesNotExist:
@@ -79,7 +81,7 @@ def addfriend(request):
                 friend = User.objects.get(username__iexact=form.cleaned_data['friend'])
             except User.DoesNotExist:
                 return render(request, 'addfriend.html', {'form': form})
-            newfriend = userRelationship(creator=request.user, friend=friend)
+            newfriend = UserRelationship(creator=request.user, friend=friend)
             newfriend.save()
             return render(request, 'genericresponse.html', {'genericcontent': "Friend Added!"})
     else:
@@ -91,8 +93,7 @@ def addfriend(request):
 
 def displayProfileForm(request):
     user = request.user
-    userprofile = UserProfile.objects.get_or_create(user=user)
-    edituserform = UserProfile.objects.get(user=user)
+    edituserform, userprofile = UserProfile.objects.get_or_create(user=user)
     if request.method == "POST":
         form = editUserProfile(request.POST, request.FILES, instance=edituserform)
         if form.is_valid():
@@ -106,6 +107,22 @@ def displayProfileForm(request):
         form = editUserProfile(instance=edituserform)
 
     return render(request, 'editprofile.html', {'form': form})
+
+
+def displaychat(request):
+    context_dict = {}
+    messages = ChatGroup.objects.getmessages(groupID=groupID)
+    chatgroup = ChatGroup.objects.get(groupID=groupID)
+    participants = ChatGroup.objects.getparticipants()
+
+    if groupID:
+        context_dict['chatagroup'] = ChatGroup.objects.get(groupID=groupID)
+
+    else:
+        render(request,'displaychat.html', context_dict)
+
+
+
 
 
 

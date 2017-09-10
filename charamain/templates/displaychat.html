@@ -1,0 +1,14 @@
+{% extends base %}
+
+{% block content %}
+
+        <h1>{{ groupchat.name }}</h1>
+
+        {% for message in messages %}
+            <p>message.messageSender.username
+            <br />message.messageText</p>
+        {% endfor %}
+
+{% endblock content %}
+
+

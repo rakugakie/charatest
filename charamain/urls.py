@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^character/new/$', views.addkyara, name='addkyara'),
     url(r'^friends/add/$', views.addfriend, name='addfriend'),
     url(r'^profile/edit$', views.displayProfileForm, name="editUserProfile"),
+    url(r'^group/(?P<groupID>[\w\-]+)$', views.displaychat, name='displaychat'),
 
 ]
 
