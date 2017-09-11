@@ -69,19 +69,17 @@ class UserRelationship(TimeCreatable):
 
 
 class ChatGroupManager(models.Manager):
-
-    def getparticipants(self, userid, x, y=0):
+    def getparticipants(self, x=None, y=0):
         if x and y:
-            return self.filter(participantUserID=userid)[y:x]
+            return self.modUserID_set[y, x]
         else:
-            return self.filter(participantUserID=userid)
+            return self.modUserID_set
 
-    def getmods(self):
-        return self.filter
+    # def getmods(self):
+    #     return self.filter
 
-    def getmessages(self, y=0, x=10):
-            return MessageText.objects.filter(messageGroup=self)[y:x]
-
+    # def getmessages(self, y=0, x=10):
+    #         return MessageText.objects.filter(messageGroup=self)
 
 
 class ChatGroup(TimeCreatable, Modifiable):
@@ -90,8 +88,7 @@ class ChatGroup(TimeCreatable, Modifiable):
     modUserID = models.ForeignKey(base.AUTH_USER_MODEL, related_name="modUserID", blank=True)
     participantUserID = models.ManyToManyField(base.AUTH_USER_MODEL)
     groupPhoto = models.ImageField(upload_to='group_images', null=True)
-    objects = ChatGroupManager
-
+    objects = ChatGroupManager()
 
 class MessageText(TimeCreatable, Modifiable):
     messageText = models.CharField(max_length=1000, default='')

@@ -1,14 +1,29 @@
-{% extends base %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-        <h1>{{ groupchat.name }}</h1>
-
-        {% for message in messages %}
-            <p>message.messageSender.username
-            <br />message.messageText</p>
+        <h1>{{ chatgroup.groupname }}</h1>
+    {% if participants%}
+        Participants:
+        {% for participant in participants %}
+            {{ participant.username }}
         {% endfor %}
+    {% endif %}
 
+    {% if messages %}
+        {% for message in messages %}
+            <br />{{ message.messageSender.username }} : {{ message.messageText }}
+        {% endfor %}
+    {% endif %}
+
+
+    <div>
+        <form method = "POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button >Send Message</button>
+        </form>
+    </div>
 {% endblock content %}
 
 

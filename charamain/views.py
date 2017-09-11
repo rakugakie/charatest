@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from charatest_project.users.models import User
-from charamain.models import Kyaracter, UserProfile, UserRelationship, ChatGroup
+from charamain.models import Kyaracter, UserProfile, UserRelationship, ChatGroup, MessageText
 from django.http import HttpResponse, HttpResponseRedirect
-from charamain.forms import AddKyara, addFriend, editUserProfile
+from charamain.forms import AddKyara, addFriend, editUserProfile, SendMessage
 
 # Create your views here.
 
@@ -109,17 +109,50 @@ def displayProfileForm(request):
     return render(request, 'editprofile.html', {'form': form})
 
 
-def displaychat(request):
+def displaychat(request, groupID):
     context_dict = {}
-    messages = ChatGroup.objects.getmessages(groupID=groupID)
-    chatgroup = ChatGroup.objects.get(groupID=groupID)
-    participants = ChatGroup.objects.getparticipants()
-
+    form = SendMessage
+    context_dict['form'] = form
     if groupID:
-        context_dict['chatagroup'] = ChatGroup.objects.get(groupID=groupID)
+        context_dict['groupID'] = groupID
 
+        try:
+            chatgroup = ChatGroup.objects.get(groupID=groupID)
+            context_dict['chatgroup'] = chatgroup
+
+            participants = chatgroup.participantUserID.all()
+            context_dict['participants'] = participants
+
+            if request.user not in participants:
+                return render(request, 'genericresponse.html',
+                              {'genericcontent': "You are not part of this group!"})
+
+            messages = chatgroup.messagetext_set.all().order_by('created')
+            context_dict['messages'] = messages
+
+            # try:
+            #     messages = ChatGroup.objects.getmessages(chatgroup)
+            #     context_dict['messages'] = messages
+            # except ChatGroup.DoesNotExist or MessageText.objects.DoesNotExist:
+            #     pass
+            # except:
+            #     raise Exception("Unknown Error Occurred")
+
+            if request.method == "POST":
+                form = SendMessage(request.POST)
+                if form.is_valid():
+                    newmessage = form.save(commit=False)
+                    newmessage.messageGroup = chatgroup
+                    newmessage.messageSender = request.user
+                    newmessage.save()
+
+        except ChatGroup.DoesNotExist:
+            pass
+        except:
+            raise Exception("Unknown Error Occurred")
     else:
-        render(request,'displaychat.html', context_dict)
+        pass
+    return render(request,'displaychat.html', context_dict)
 
 
 

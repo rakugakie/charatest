@@ -1,5 +1,5 @@
 from django import forms
-from charamain.models import Kyaracter, UserProfile
+from charamain.models import Kyaracter, UserProfile, MessageText
 from charatest_project.users.models import User
 
 
@@ -19,3 +19,10 @@ class editUserProfile(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('userkyaracount', 'userfriendcount', 'user',)
+
+
+class SendMessage(forms.ModelForm):
+
+    class Meta:
+        model = MessageText
+        fields = ('messageText',)
