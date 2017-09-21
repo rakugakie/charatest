@@ -361,3 +361,4 @@ mailhog
 charatest_project/media/
 '.env'
 'mailhog.exe'
+charamain/migrations
