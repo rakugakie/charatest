@@ -1,20 +1,8 @@
 from django import forms
-from charamain.models import Kyaracter, UserProfile, MessageText
-from charatest_project.users.models import User
+from charamain.models import UserProfile, MessageText
 
 
-class AddKyara(forms.ModelForm):
-
-    class Meta:
-        model = Kyaracter
-        fields = ('kyaraname', 'kyarapic',)
-
-
-class addFriend(forms.Form):
-    friend = forms.CharField(label="Friends' Username", max_length=100, required=True)
-
-
-class editUserProfile(forms.ModelForm):
+class EditUserProfile(forms.ModelForm):
 
     class Meta:
         model = UserProfile
@@ -26,3 +14,8 @@ class SendMessage(forms.ModelForm):
     class Meta:
         model = MessageText
         fields = ('messageText',)
+
+
+class AddFriend(forms.Form):
+    friend = forms.CharField(label="Friends' Username", max_length=100, required=True)
+

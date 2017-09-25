@@ -6,7 +6,7 @@ from django.conf.urls import static
 urlpatterns = [
     url(r'^$', views.index, name='home'),
     url(r'^userprofile/(?P<owner>[\w\-]+)$', views.displayprofile, name='displayprofile'),
-    url(r'^character/new/$', views.addkyara, name='addkyara'),
+    url(r'^character/', include('kyara.urls'), name='kyara'),
     url(r'^friends/add/$', views.addfriend, name='addfriend'),
     url(r'^profile/edit$', views.displayProfileForm, name="editUserProfile"),
     url(r'^group/(?P<groupID>[\w\-]+)$', views.displaychat, name='displaychat'),

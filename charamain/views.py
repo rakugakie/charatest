@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from charatest_project.users.models import User
-from charamain.models import Kyaracter, UserProfile, UserRelationship, ChatGroup, MessageText
-from django.http import HttpResponse, HttpResponseRedirect
-from charamain.forms import AddKyara, addFriend, editUserProfile, SendMessage
+from charamain.models import UserProfile, UserRelationship, ChatGroup, MessageText
+from django.http import HttpResponseRedirect
+from charamain.forms import EditUserProfile, SendMessage
+from kyara.models import Kyaracter
 
 # Create your views here.
 
@@ -55,24 +56,6 @@ def displayprofile(request, owner):
 
     return render(request, 'genericresponse.html', {'genericcontent':"The user does not exist"})
 
-
-def addkyara(request):
-    if request.method == "POST":
-        form = AddKyara(request.POST, request.FILES)
-        if form.is_valid():
-            try:
-                kyara = form.save()
-                kyara.kyaraowner.add(request.user)
-                kyara.save()
-                return render(request, 'genericresponse.html', {'genericcontent': "Character made successfully!"})
-            except:
-                return render(request, 'genericresponse.html',
-                              {'genericcontent': "Character creation failed! Try again or let us know"})
-    else:
-        form = AddKyara()
-
-    return render(request,'addkyara.html', {'form': form})
-
 def addfriend(request):
     if request.method == "POST":
         form = addFriend(request.POST)
@@ -89,13 +72,11 @@ def addfriend(request):
 
     return render(request, 'addfriend.html', {'form':form})
 
-
-
 def displayProfileForm(request):
     user = request.user
     edituserform, userprofile = UserProfile.objects.get_or_create(user=user)
     if request.method == "POST":
-        form = editUserProfile(request.POST, request.FILES, instance=edituserform)
+        form = EditUserProfile(request.POST, request.FILES, instance=edituserform)
         if form.is_valid():
             try:
                 form.save()
@@ -104,7 +85,7 @@ def displayProfileForm(request):
                 print("beepboop")
                 pass
     else:
-        form = editUserProfile(instance=edituserform)
+        form = EditUserProfile(instance=edituserform)
 
     return render(request, 'editprofile.html', {'form': form})
 

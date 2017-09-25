@@ -6,6 +6,7 @@ from django.db import models
 from django.template.defaultfilters import _slugify
 from datetime import datetime
 from config.settings import base
+from kyara.models import Kyaracter
 
 
 class Modifiable(models.Model):
@@ -33,25 +34,6 @@ class UserProfile(Modifiable):
 
     def __str__(self):
         return self.user.username
-
-
-class KyaraListManager(models.Manager):
-    def kyaralist(self, ownerid, x=None):
-        if x:
-            return self.filter(kyaraowner=ownerid)
-        else:
-            return self.filter(kyaraowner=ownerid)[0:x]
-
-
-class Kyaracter(Modifiable, TimeCreatable):
-    kyaraID = models.AutoField(unique=True, primary_key=True)
-    kyaraname = models.CharField(unique=False, max_length=50)
-    kyaraowner = models.ManyToManyField(base.AUTH_USER_MODEL)
-    kyarapic = models.ImageField(upload_to='kyara_images', blank=True)
-    objects = KyaraListManager()
-
-    def __str__(self):
-        return self.kyaraname
 
 
 class FriendsListManager(models.Manager):
@@ -89,6 +71,7 @@ class ChatGroup(TimeCreatable, Modifiable):
     participantUserID = models.ManyToManyField(base.AUTH_USER_MODEL)
     groupPhoto = models.ImageField(upload_to='group_images', null=True)
     objects = ChatGroupManager()
+
 
 class MessageText(TimeCreatable, Modifiable):
     messageText = models.CharField(max_length=1000, default='')
