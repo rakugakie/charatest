@@ -12,6 +12,7 @@ def index(request):
 
     context_dict = {}
 
+
     try:
         userlist = User.objects.order_by('username')
 
@@ -24,7 +25,6 @@ def index(request):
 
 
 def displayprofile(request, owner):
-
     context_dict = {}
     try:
         owner = User.objects.get(username__iexact=owner)
