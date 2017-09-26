@@ -1,5 +1,6 @@
 {% extends 'newbase.html' %}
-{% extends 'sidebar.html' %}
+{% include 'sidebar.html' %}
+{% include userprofilecontent %}
 {% block content %}
     <h1> {{ profileowner.username }}'s Profile
 
@@ -37,6 +38,8 @@
         {% endfor %}
         </ul>
     {% endif %}
+
+
 
 
 {% endblock content %}
