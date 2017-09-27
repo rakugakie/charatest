@@ -1,6 +1,11 @@
 {% extends 'newbase.html' %}
-{% include 'sidebar.html' %}
-{% include userprofilecontent %}
+
+{% load static i18n %}
+
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock sidebar %}
+
 {% block content %}
     <h1> {{ profileowner.username }}'s Profile
 
@@ -9,7 +14,7 @@
         {% endif %}
     <h1>
     {% if picture %}
-        <br/><img src="{{ picture.url }}"> Poop!
+        <br/><img src="{{ picture.url }}">
     {%  endif %}
 
     {% if profileDescription %}
@@ -38,8 +43,5 @@
         {% endfor %}
         </ul>
     {% endif %}
-
-
-
 
 {% endblock content %}

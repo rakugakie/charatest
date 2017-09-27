@@ -1,26 +1,27 @@
-{% block sidebar %}
-        <div id="homesidebar" class="col-sm-12 col-md-3 p-4 sidebar">
-            <div class="profileimagecontainer">
-                    {% if picture %}
-                        <img src="{{ picture.url }}" class="profileimage rounded-circle">
-                    {% else %}
-                        <img src="goat.jpg" class="profileimage rounded-circle">
-                    {%  endif %}
-            </div>
+{% load static i18n %}
 
-            <div class="sidebarcontent mt-2 ">
-                <h4 class="username">{{ profileowner.username }}</h4>
-                <div id="shortdescription" class="smalltext">
+<div id="homesidebar" class="col-sm-12 col-md-3 p-4 sidebar">
+    <div class="profileimagecontainer">
+            {% if picture %}
+                <img src="{{ picture.url }}" class="profileimage rounded-circle">
+            {% else %}
+                <img src="goat.jpg" class="profileimage rounded-circle">
+            {%  endif %}
+    </div>
 
-                    {% if profileDescription %}
-                    <div>
-                    {{ profileDescription }}
-                    </div>
-                    {% endif %}
-                </div>
-                <div class="buttons mt-2">
-                    <a href="{% url 'addfriend' %}"><button type="button" class="btn btn-custom">Add</button></a>
-                </div>
+    <div class="sidebarcontent mt-2 ">
+        <h4 class="username">{{ profileowner.username }}</h4>
+        <div id="shortdescription" class="smalltext">
+
+            {% if profileDescription %}
+            <div>
+            {{ profileDescription }}
             </div>
+            {% endif %}
         </div>
-{% endblock % }
+        <div class="buttons mt-2">
+            <a href="{% url 'addfriend' %}"><button type="button" class="btn btn-custom">Add</button></a>
+        </div>
+    </div>
+</div>
+

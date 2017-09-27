@@ -12,5 +12,4 @@ urlpatterns = [
     url(r'^group/(?P<groupID>[\w\-]+)$', views.displaychat, name='displaychat'),
 
 ]
-
-# + static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)
+# static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)

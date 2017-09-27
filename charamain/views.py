@@ -49,7 +49,7 @@ def displayprofile(request, owner):
         except:
             raise Exception("Unknown Error Occured at friendslist")
 
-        return render(request, 'displayprofile.html', context_dict)
+        return render(request, 'newdisplayprofile.html', context_dict)
     except User.DoesNotExist:
         print("The user does not exist")
 
