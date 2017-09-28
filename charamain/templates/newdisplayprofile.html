@@ -2,46 +2,13 @@
 
 {% load static i18n %}
 
-{% block sidebar %}
-    {% include 'sidebar.html' %}
-{% endblock sidebar %}
+{% block container %}
+    {% block sidebar %}
+        {% include 'sidebar.html' %}
+    {% endblock sidebar %}
 
-{% block content %}
-    <h1> {{ profileowner.username }}'s Profile
+    {% block content %}
+        {% include 'userprofilecontent.html' %}
 
-        {% if profileowner == request.user %}
-                <a href="{% url 'editUserProfile' %}"> [Edit]</a>
-        {% endif %}
-    <h1>
-    {% if picture %}
-        <br/><img src="{{ picture.url }}">
-    {%  endif %}
-
-    {% if profileDescription %}
-    <div>
-    {{ profileDescription }}
-    </div>
-    {% endif %}
-    <p>Characters:</p>
-    {% if kyaralist %}
-        <p>
-            {% for kyara in kyaralist %}
-                    <li>{{ kyara.kyaraname }}
-                        {% if kyara.kyarapic %}<img style="width:200px;height:200px;" src="{{  kyara.kyarapic.url }}">{% endif %}
-                    </li>
-
-            {% endfor %}
-            </ul>
-
-    {% endif %}
-
-    <p>Friends:</p>
-    {% if friendslist %}
-        <ul>
-        {% for friend in friendslist %}
-            <li><a href="{% url 'displayprofile' friend.friend.username %}">{{ friend.friend.username }}</a></li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-
-{% endblock content %}
+    {% endblock content %}
+{% endblock container %}

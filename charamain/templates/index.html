@@ -1,8 +1,11 @@
-{%  extends 'base.html' %}
+{%  extends 'newbase.html' %}
+{% block sidebar %}
 
+{% endblock sidebar %}
 {% block content %}
-<p> Hey Idiots</p>
 
+<div id="homecontentcolumn" class="col-sm-12 col-md-12  p-3">
+<p> Current User List: </p>
     {% if userlist %}
         <ul>
         {% for users in userlist %}
@@ -10,4 +13,5 @@
         {% endfor %}
         </ul>
     {% endif %}
+</div>
 {% endblock content %}

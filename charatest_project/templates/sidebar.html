@@ -20,8 +20,14 @@
             {% endif %}
         </div>
         <div class="buttons mt-2">
-            <a href="{% url 'addfriend' %}"><button type="button" class="btn btn-custom">Add</button></a>
+            <a href="{% url 'addfriend' %}"><button type="button" class="btn mt-2">Add</button></a>
         </div>
+
+        {% if profileowner == request.user %}
+            <div class="buttons mt-2">
+                <a href="{% url 'editUserProfile' %}"><button type="button" class="btn mt-2">Edit profile</button></a>
+            </div>
+        {% endif %}
     </div>
 </div>
 

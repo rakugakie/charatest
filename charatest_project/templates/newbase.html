@@ -1,40 +1,46 @@
-{% load static i18n %}<!DOCTYPE html>
+{% load static i18n %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}charatest{% endblock title %}</title>
+    <title>{% block title %}Charatest!{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Profile Display Page">
 
     {% block css %}
-        <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
-        <link rel="stylesheet" type="text/css" href="../static/css/newcss.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
+        <link rel="stylesheet" type="text/css" href="{% static 'css/newcss.css' %}" />
     {% endblock %}
 
 </head>
 
-<body>
+
+<!-- BODY ID = HOMEBODY -->
+<body id="homebody" >
     <nav id="stickybar" class="navbar navbar-toggleable-sm navbar-light bg-faded">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">Charatest</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Charatest</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
 
                 {% if request.user.is_authenticated %}
+                <a href="{% url 'displayprofile' request.user.username %}">
+                    <li class="nav-item nav-link">
+                        {% if request.user.userprofile.picture %}
 
-                <li class="nav-item">
-                    <a src="profileurl"><img src="goat.jpg" class="rounded-circle navbarimage"></a>
-                </li>
-                <li class="nav-item">
-                    <a scr="kyaraurl"><img src="goat1.jpg" class="rounded-circle navbarimage"></a>
+                                <img src="{{ request.user.userprofile.picture.url }}" class="rounded-circle navbarimage">
+
+                        {% else %}
+                            <a src="profileurl"><img src="{% static 'images/goat2.jpg' %}" class="rounded-circle navbarimage"></a>
+                        {%  endif %}
+                    </li>
+                </a>
+
+                <li class="nav-item nav-link">
+                    <a scr="kyaraurl"><img src="{% static 'images/goat2.jpg' %}" class="rounded-circle navbarimage" ></a>
                 </li>
 
                 {% endif %}
@@ -62,7 +68,7 @@
                 <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
               </li>
                 <li class="nav-item">
-                <a id="google_login" href="/accounts/google/login" class="btn btn-success">{%  trans "Google Login" %} </a>
+                <a id="google_login" href="/accounts/google/login" class="nav-link">{%  trans "Google Login" %} </a>
                 </li>
 
             {% endif %}
@@ -72,10 +78,12 @@
 
 
 <div class ="container" id="maindiv">
-    <div id="homebody" class="row justify-content-between mt-4 main">
 
+    <div class="row justify-content-between mt-4 main">
+
+{% block container %}
         {% block sidebar %}
-            "nothing to see here folks"
+
         {% endblock sidebar %}
 
         {% block content %}
@@ -85,6 +93,7 @@
     </div>
 </div>
 
+{% endblock container %}
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>

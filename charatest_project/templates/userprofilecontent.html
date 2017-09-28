@@ -1,6 +1,7 @@
-<div id="homecontent" class="col-sm-12 col-md-9 mainbar">
-    <div class="nobordercard"> 
-        <div class="card-body"> 
+{% load static i18n %}
+<div id="homecontentcolumn" class="col-sm-12 col-md-9 mainbar">
+    <div class="nobordercard">
+        <div class="card-body">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
@@ -26,7 +27,7 @@
             <div class="card-deck">
 
               <div class="card">
-                  <img class="card-img-top contentimg" src="goat1.jpg">
+                  <img class="card-img-top contentimg" src="{% static 'images/goat1.jpg' %}">
                 <div class="card-block">
                   <h4 class="card-title serif">Site Traffic</h4>
                   <p class="card-text"><strong>2,000</strong> Today
@@ -38,7 +39,7 @@
 
 
               <div class="card">
-                  <img class="card-img-top contentimg" src="goat1.jpg">
+                  <img class="card-img-top contentimg" src="{% static 'images/goat1.jpg' %}">
                 <div class="card-block">
                   <h4 class="card-title serif">Drafts</h4>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, doloremque accusantium at sint quos corrupti.</p>
@@ -46,7 +47,7 @@
               </div>
 
                                       <div class="card">
-                  <img class="card-img-top contentimg" src="goat1.jpg">
+                  <img class="card-img-top contentimg" src="{% static 'images/goat1.jpg' %}">
                 <div class="card-block">
                   <h4 class="card-title">Drafts</h4>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, doloremque accusantium at sint quos corrupti.</p>
@@ -54,7 +55,7 @@
               </div>
 
               <div class="card">
-                  <img class="card-img-top contentimg" src="goat1.jpg">
+                  <img class="card-img-top contentimg" src="{% static 'images/goat1.jpg' %}">
                 <div class="card-block">
                   <h4 class="card-title">Need help?</h4>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, doloremque accusantium at sint quos corrupti.</p>

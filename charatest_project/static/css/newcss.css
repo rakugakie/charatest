@@ -15,39 +15,55 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Source Serif Pro', serif; }
     font-size:10px;
 }
 
-.username{
-    font-family: 'Source Serif Pro', serif;
-    font-weight: bold;
+
+#homebody{
+    font-size:.9em;
+    background-color: rgba(18, 22, 29, 0.2);
+    font-family:'mplus', "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+
 }
+
+#homesidebar{
+    background-color: white;
+    max-height:600px;
+    overflow:hidden;
+    border-radius: 3px;
+
+}
+#homecontentcolumn{
+    background-color:white;
+    min-height:700px;
+    padding:0;
+    border-radius: 3px;
+}
+
+/*navigation bar */
 
 #stickybar{
     height:75px;
 }
 
 .navbarimage{
-    max-height:45px;
-    max-width:45px;
-    padding-left:10px;
-    padding-right:5px;
-}
-
-#homebody{
-    font-size:.9em;
-
-    background-color: gainsboro;
-    font-family:'mplus', "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    height:45px;
+    width:45px;
+    padding-left:0px;
 
 }
 
-#homebody .h5{
-    font-family: 'Source Serif Pro', serif;
+.navbar-brand{
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 55px;
+  line-height: 55px;
 }
-#homesidebar{
-    background-color:darkgrey;
-    max-height:600px;
-    overflow:hidden;
+.nav-link{
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 55px;
+  line-height: 55px;
+}
 
-}
+
 
 .sidebarcontent{
     position:relative;
@@ -74,11 +90,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Source Serif Pro', serif; }
 }
 
 
-#homecontent{
-    background-color:white;
-    min-height:700px;
-    padding:0;
-}
+
 
 .nobordercard{
     border:0;
