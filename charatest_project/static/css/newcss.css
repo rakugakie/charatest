@@ -1,4 +1,7 @@
-h1, h2, h3, h4, h5, h6 { font-family: 'Source Serif Pro', serif; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'mplus', "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: bold;
+}
 
 @font-face{
     font-family:'mplus';
@@ -18,7 +21,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Source Serif Pro', serif; }
 
 #homebody{
     font-size:.9em;
-    background-color: rgba(18, 22, 29, 0.2);
+    background-color: #d2edfa;
     font-family:'mplus', "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -41,6 +44,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Source Serif Pro', serif; }
 
 #stickybar{
     height:75px;
+  background-color:white;
 }
 
 .navbarimage{
@@ -101,14 +105,11 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Source Serif Pro', serif; }
 #usercontentgallery{
 
     overflow:hidden;
-    background-color:pink;
-
 }
 
-.profilecontentcard{
-
+.bold{
+  font-weight:bold;
 }
-
 .contentimg{
 
   max-width:100%;
@@ -119,6 +120,18 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Source Serif Pro', serif; }
     display:block;
     margin:auto;
     text-align:center;
+}
+
+.btn-blue{
+  background-color:rgba(21, 53, 71, 0.41);
+  color:white;
+  font-family: 'mplus', "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: bold;
+}
+
+.experimental{
+  font-weight:bold;
+  font-size:16px;
 }
 
 .btn-custom {
@@ -166,4 +179,50 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Source Serif Pro', serif; }
     margin-left: 0px;
 }
 
+}
+
+
+.color-primary-0 { color: #CCE1EC }	/* Main Primary color */
+.color-primary-1 { color: #FFFFFF }
+.color-primary-2 { color: #F0F7FB }
+.color-primary-3 { color: #9EC1D2 }
+.color-primary-4 { color: #6B97AC }
+
+.color-secondary-1-0 { color: #FFFDDB }	/* Main Secondary color (1) */
+.color-secondary-1-1 { color: #FFFFFF }
+.color-secondary-1-2 { color: #FFFEF3 }
+.color-secondary-1-3 { color: #FFFBBD }
+.color-secondary-1-4 { color: #FFF999 }
+
+.color-secondary-2-0 { color: #F5D2E6 }	/* Main Secondary color (2) */
+.color-secondary-2-1 { color: #FFFFFF }
+.color-secondary-2-2 { color: #FDF1F8 }
+.color-secondary-2-3 { color: #E7ABCD }
+.color-secondary-2-4 { color: #D27EAE }
+
+
+
+/* As RGBa codes */
+
+.rgba-primary-0 { color: rgba(204,225,236,1) }	/* Main Primary color */
+.rgba-primary-1 { color: rgba(255,255,255,1) }
+.rgba-primary-2 { color: rgba(240,247,251,1) }
+.rgba-primary-3 { color: rgba(158,193,210,1) }
+.rgba-primary-4 { color: rgba(107,151,172,1) }
+
+.rgba-secondary-1-0 { color: rgba(255,253,219,1) }	/* Main Secondary color (1) */
+.rgba-secondary-1-1 { color: rgba(255,255,255,1) }
+.rgba-secondary-1-2 { color: rgba(255,254,243,1) }
+.rgba-secondary-1-3 { color: rgba(255,251,189,1) }
+.rgba-secondary-1-4 { color: rgba(255,249,153,1) }
+
+.rgba-secondary-2-0 { color: rgba(245,210,230,1) }	/* Main Secondary color (2) */
+.rgba-secondary-2-1 { color: rgba(255,255,255,1) }
+.rgba-secondary-2-2 { color: rgba(253,241,248,1) }
+.rgba-secondary-2-3 { color: rgba(231,171,205,1) }
+.rgba-secondary-2-4 { color: rgba(210,126,174,1) }
+
+.one-edge-shadow {
+	-webkit-box-shadow: 0 -1px 5px 1px #3584AA;
+	        box-shadow: 0 -1px 5px 1px rgba(21, 53, 71, 0.41);
 }

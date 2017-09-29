@@ -20,19 +20,19 @@
             {% endif %}
         </div>
         <div class="buttons mt-2">
-            <a href="{% url 'addfriend' %}"><button type="button" class="btn mt-2">Add</button></a>
+            <a href="{% url 'addfriend' %}"><button type="button" class="btn mt-2 btn-blue">Add</button></a>
         </div>
 
         {% if profileowner == request.user %}
-            <div class="buttons mt-2">
-                <a href="{% url 'editUserProfile' %}"><button type="button" class="btn mt-2">Edit profile</button></a>
+            <div class="buttons mt-2 mb-4">
+                <a href="{% url 'editUserProfile' %}"><button type="button" class="btn mt-2 btn-blue">Edit profile</button></a>
             </div>
         {% endif %}
 
         {% if friendslist %}
             <div class="friendslist">
-            <h5 class="serif">Friends</h5>
-            <div class="friendscontainer">
+            <h5>Friends</h5>
+            <div class="mt-2">
             {% for friend in friendslist %}
                 {% if friend.friend.userprofile.picture %}
                 <img class = "friendimgtiny" src="{{ friend.friend.userprofile.picture.url }}">
