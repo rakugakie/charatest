@@ -5,7 +5,7 @@
             {% if picture %}
                 <img src="{{ picture.url }}" class="profileimage rounded-circle">
             {% else %}
-                <img src="goat.jpg" class="profileimage rounded-circle">
+                <img src="../../charatest_project/templates/goat.jpg" class="profileimage rounded-circle">
             {%  endif %}
     </div>
 
@@ -28,6 +28,23 @@
                 <a href="{% url 'editUserProfile' %}"><button type="button" class="btn mt-2">Edit profile</button></a>
             </div>
         {% endif %}
+
+        {% if friendslist %}
+            <div class="friendslist">
+            <h5 class="serif">Friends</h5>
+            <div class="friendscontainer">
+            {% for friend in friendslist %}
+                {% if friend.friend.userprofile.picture %}
+                <img class = "friendimgtiny" src="{{ friend.friend.userprofile.picture.url }}">
+                {% else %}
+                 <img class = "friendimgtiny" src="{% static 'images/goat2.jpg' %}">
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+        {%  endif %}
     </div>
+
+
 </div>
 
